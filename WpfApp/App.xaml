@@ -1,0 +1,23 @@
+﻿<Application x:Class="WpfApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp.Controls.Metro"
+             xmlns:vm="clr-namespace:WpfApp.ViewModel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" ></vm:ViewModelLocator>
+            <!--自定义样式-->
+            <Style x:Key="FontAwesome">
+                <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/Resources/#FontAwesome" />
+                <Setter Property="TextBlock.Width" Value="100"></Setter>
+                <Setter Property="TextBlock.Height" Value="100"></Setter>
+                <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+                <Setter Property="TextBlock.FontSize" Value="60"></Setter>
+                <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+            </Style>
+            <!--自定义样式-结束-->
+        </ResourceDictionary>
+    </Application.Resources>    
+</Application>
+    

@@ -1,0 +1,157 @@
+﻿<Metro:MetroWindow x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        xmlns:Metro="clr-namespace:WpfApp.Controls.Metro"
+        xmlns:cmd="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="内容抓取系统" Icon="&#xf108;"   d:DesignWidth="1600" d:DesignHeight="1200" MinWidth="1" MinHeight="1" BorderThickness="1" WindowStyle="None" Background="#FB852D">
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
+    </Window.DataContext>
+    <Metro:MetroWindow.Menu>
+        <Metro:MetroTitleMenu  >
+            <Metro:MetroTitleMenuItem Header="菜单" >
+                <Metro:MetroMenuItem Header="退出软件" Icon="&#xf0ad;"/>
+                <Metro:MetroMenuItem Header="二级菜单" IsEnabled="False" />
+                <Metro:MetroMenuItem Header="二级菜单" />
+                <!--<Metro:MetroMenuSeparator />-->
+                <Metro:MetroMenuItem Header="二级菜单" />
+                <Metro:MetroMenuItem Header="二级菜单"  />
+                <Metro:MetroMenuItem Header="内部是三级菜单" >
+                    <Metro:MetroMenuItem Header="三级菜单"  />
+                    <Metro:MetroMenuItem Header="三级菜单" IsEnabled="False"  />
+                    <Metro:MetroMenuItem Header="三级菜单" />
+                    <!--<Metro:MetroMenuSeparator />-->
+                    <Metro:MetroMenuItem Header="三级菜单"  />
+                    <Metro:MetroMenuItem Header="内部是三级菜单" >
+                        <Metro:MetroMenuItem Header="三级菜单" />
+                        <Metro:MetroMenuItem Header="三级菜单"  />
+                        <Metro:MetroMenuItem Header="三级菜单"  />
+                        <!--<Metro:MetroMenuSeparator />-->
+                        <Metro:MetroMenuItem Header="三级菜单"  />
+                        <Metro:MetroMenuItem Header="三级菜单"  />
+                    </Metro:MetroMenuItem>
+                </Metro:MetroMenuItem>
+                <Metro:MetroMenuItem Header="二级菜单" />
+            </Metro:MetroTitleMenuItem>
+            <Metro:MetroTitleMenuItem Header="测试" IsEnabled="False"  />
+            <Metro:MetroTitleMenuItem Header="测试" IsEnabled="False" />
+            <Metro:MetroTitleMenuItem Header="文件" />
+            <Metro:MetroTitleMenuItem Header="关于"  />
+        </Metro:MetroTitleMenu>
+    </Metro:MetroWindow.Menu>
+    <Grid>
+        <Metro:MetroMenuTabControl x:Name="tab" IconMode="True" >
+            <Metro:MetroMenuTabItem Header="首页" Icon="&#xf015;" IconMove="&#xf015;">
+                <Metro:MetroTabControl x:Name="tabHome" >
+                    <Metro:MetroTabItem Header="首页" Icon="{x:Null}" Selector.IsSelected="True" Visibility="Visible" >
+                        <Grid >
+                            <StackPanel Margin="15,10">
+                                <Metro:MetroTextBox Margin="150,30" Title="网址"  TitleMinWidth="30"  InputHint="请输入抓取网址" ButtonTitle="确定" PopupHint="" x:Name="txtUrl"  FontSize="18" Text="{Binding SpliderInfo.Domain,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  ButtonClick="txtUrl_ButtonClick">
+                                    <cmd:Interaction.Triggers>
+                                        <cmd:EventTrigger EventName="ButtonClick">
+                                            <cmd:InvokeCommandAction Command="{Binding StartCommand}" CommandParameter="{Binding ElementName=txtUrl,Path=Text}"></cmd:InvokeCommandAction>
+                                        </cmd:EventTrigger>
+                                    </cmd:Interaction.Triggers>
+                                </Metro:MetroTextBox>
+                            </StackPanel>
+                        </Grid>
+                    </Metro:MetroTabItem>
+                    <Metro:MetroTabItem Header="配置" Icon="{x:Null}">
+                        <Grid Margin="15,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel>
+                                    <Metro:MetroTextBox Title="任务名称" Margin="15" FontSize="15" TitleMinWidth="50" MinHeight="25" Text="{Binding SpliderInfo.Title,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Metro:MetroTextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                    <Metro:MetroGroupBox Header="层次设置" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"  MinWidth="10" FontSize="16">
+                                        <StackPanel Orientation="Horizontal">
+                                            <RadioButton GroupName="Level"  Content="抓取分类" IsChecked="True" Margin="10,5" Command="{Binding }"></RadioButton>
+                                            <RadioButton GroupName="Level" Content="抓取列表" Margin="10,5"></RadioButton>
+                                        </StackPanel>
+                                    </Metro:MetroGroupBox>
+                                    <Metro:MetroGroupBox Header="正则设置" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="10" FontSize="16">
+                                        <StackPanel Orientation="Vertical">
+                                            <Metro:MetroTextBox MinWidth="150"></Metro:MetroTextBox>
+                                        </StackPanel>
+                                    </Metro:MetroGroupBox>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Grid.Row="1" >
+                                <Metro:MetroIconButton Icon="&#xf0c7;" x:Name="btnNext" Margin="5" Content="保存" FontSize="18"  Background="#D7D7D7" Height="50" Width="150"   CornerRadius="8"  MouseOverBackground="#D7D7D7"  Click="btnNext_Click">
+                                    <cmd:Interaction.Triggers>
+                                        <cmd:EventTrigger EventName="Click">
+                                            <cmd:InvokeCommandAction Command="{Binding NextCommand}" ></cmd:InvokeCommandAction>
+                                        </cmd:EventTrigger>
+                                    </cmd:Interaction.Triggers>
+                                </Metro:MetroIconButton>
+                            </StackPanel>
+                        </Grid>
+                    </Metro:MetroTabItem>
+                    <Metro:MetroTabItem Header="抓取" Icon="{x:Null}">
+                        <cmd:Interaction.Triggers>
+                            <cmd:EventTrigger EventName="OnSelected">
+                                <cmd:InvokeCommandAction Command="{Binding HistoryDataCommand}"></cmd:InvokeCommandAction>
+                            </cmd:EventTrigger>
+                        </cmd:Interaction.Triggers>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <ListView ItemsSource="{Binding Links}" FontSize="18">
+                                <ListView.View>
+                                    <GridView >
+                                        <GridView.Columns>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID" Width="50"></GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Url}" Header="链接地址" Width="100">
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="标题" Width="100"></GridViewColumn>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <StackPanel Grid.Row="1">
+                                <Metro:MetroProgressBar x:Name="pb1"  Margin="5" Value="0" ProgressBarHeight="10" CornerRadius="5" ProgressBarState="None" TextHorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </Metro:MetroTabItem>
+                </Metro:MetroTabControl>
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="内嵌文档浏览器" Icon="&#xf008;" IconMove="&#xf008;">
+                <Grid>
+                    <Metro:MetroIconButton>2</Metro:MetroIconButton>
+                </Grid>
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="数据" Icon="&#xf022;" IconMove="&#xf022;">
+                <ListView ItemsSource="{Binding Links}" FontSize="18">
+                    <ListView.View>
+                        <GridView >
+                            <GridView.Columns>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID" Width="50"></GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Url}" Header="链接地址" Width="100">
+                                </GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="标题" Width="100"></GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="设置" Icon="&#xf0ad;" IconMove="&#xf0ad;">
+
+            </Metro:MetroMenuTabItem>
+
+        </Metro:MetroMenuTabControl>
+    </Grid>
+</Metro:MetroWindow>

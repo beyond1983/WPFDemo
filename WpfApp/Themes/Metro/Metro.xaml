@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Window/MetroWindow.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Button/MetroButton.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Button/MetroIconButton.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Button/MetroTransparentButton.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Button/MetroLinkButton.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Button/MetroFocusButton.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Menu/MetroTitleMenu.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Menu/MetroTitleMenuItem.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Menu/MetroMenuItem.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Menu/MetroMenuTabControl.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Menu/MetroMenuTabItem.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Text/MetroTextBlock.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Text/MetroTextBox.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Tab/MetroTabControl.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Tab/MetroTabItem.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Box/MetroGroupBox.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/Box/MetroListView.xaml" />
+        <ResourceDictionary Source="/WpfApp;component/Themes/Metro/ProgressBar/MetroProgressBar.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
